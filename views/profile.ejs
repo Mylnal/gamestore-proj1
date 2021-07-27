@@ -1,0 +1,47 @@
+<%- include('partials/header.ejs') %> 
+<body>
+    <link rel="stylesheet" href="/assets/css/Profile.css">
+    <%- include('partials/nav.ejs') %> 
+    <div class="container">
+        <h1><%= uname %>'s Profile</h1>
+        <hr>
+        <br>
+        <div class="games">
+            <h1>Recently Bought Games:</h1>
+            <ol style="list-style-type:none;">
+                <% let j=1; purchased.forEach(purchase => { %>
+                    <li>
+                        <div class="query">
+                            <a href="/game/<%= purchase.gameid.id%>"><img src="<%= purchase.gameid.img.title_img %>" alt=""></a>
+                            
+                            <h2><%= j%> <a href="/game/<%= purchase.gameid.id%>"><%= purchase.gameid.name%></a></h2>
+                            
+                            <p><%= purchase.gameid.desc %></p>
+                        </div>
+                    </li>
+                    <% j=j+1 %> 
+                <% }); %> 
+                
+            </ol>
+        </div>
+        <div class="reviews">
+            <h1>Recently Reviewed Games:</h1>
+            <ol style="list-style-type:none;">
+                <% let i=1;comments.forEach(comment => { %>
+                    <li>
+                        <div class="query">
+                            <p class="title"><%= i%>. <span><a href="/game/<%= comment.game.id %>"><%= comment.game.name %></a></span> - <em>"<%= comment.text %>"</em></p>
+                            <% i=i+1 %> 
+                            <h3>About the Game - </h3>
+                            <p><%= comment.game.desc.split(".")[0]+comment.game.desc.split(".")[1]%></p>
+                            <h3>Rating - </h3>
+                            <p class="rating"><%= comment.game.rating %>/10</p>
+                            <a href="/game/<%= comment.game.id %>"><button type="button" class="btn btn-info float-right">More Info</button></a>
+                        </div>
+                    </li>
+                <% }); %> 
+                
+            </ol>
+        </div>
+    </div>
+    <%- include('partials/footer.ejs') %>

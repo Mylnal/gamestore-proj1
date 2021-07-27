@@ -1,0 +1,72 @@
+body{
+    justify-content: center;
+    width: 100%;
+    margin-top: 5%;
+    font-family: 'Montserrat', sans-serif;
+    background:url("https://www.pixel4k.com/wp-content/uploads/2018/10/dark-abstract-blur-4k_1539371556.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: rgb(0,114,217);
+}
+
+.main{
+    background-color: black;
+    justify-content: center;
+    margin: 5%;
+    margin-top: 10%;
+    padding: 5%;
+    border-radius: 25px;
+    opacity: 0.9;
+}
+
+.search-term{
+    color: rgb(255, 255, 255);  
+    margin-top: 5%;
+}
+
+hr{
+    border: 0; 
+    height: 2px; 
+    background-color: rgba(0, 80, 199, 0.9);
+    opacity: 1;
+}
+
+.query{
+    margin-top: 5%;
+    height:auto;
+    overflow:auto;
+}
+
+.results{
+    color: white;
+}
+
+li{
+    margin-bottom: 2.5%;
+    font-size: 1.15rem;
+}
+
+.query img{
+    float: right;
+    height: 250px;
+    width: 200px;
+    margin: 1%;
+}
+
+h1{
+    text-shadow: 5px 5px black;
+}
+
+a {
+    color: rgb(0,114,217);
+}
+
+.btn-primary {
+    background-color: rgb(0,114,217);
+    border-color: rgb(0,114,217);
+  }
+  
+.btn-outline-primary {
+    color: rgb(0,114,217);
+    border-color: rgb(0,114,217);
+  }

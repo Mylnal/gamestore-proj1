@@ -1,0 +1,109 @@
+<%- include("partials/header.ejs") %> 
+
+<link rel="stylesheet" href="/assets/css/game.css">
+<% var j = games.img.high_res[1] %> 
+
+<body style="background-image: url('<%= j%>');">
+    <!--link rel="stylesheet" href= "assets/css/gametest.css" type="text/css"-->
+    <%- include("partials/nav.ejs") %>
+    <div class="title">
+        <h1 style="text-shadow: 5px 5px #000000;"><%= games.name%> </h1>
+    </div>
+    <div class="content">
+        <div class="container">
+            <h2 style="margin-bottom: 2%;">Screenshots:</h2>
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="<%= games.img.high_res[0]%>" alt="First slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="<%= games.img.high_res[1]%> " alt="Second slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="<%= games.img.high_res[2]%>" alt="Third slide">
+                </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+                </a>
+            </div>
+            <div class="buyfr">
+                <div><h3>Now Available for Purchase:</h3></div>
+                <% if(loggedInUser){ %> 
+                <div><a class="btn btn-outline-success buy" href="#" role="button">Buy for ₹ <span id="price"><%= games.price%></span></a></div>
+                <% }else{ %> 
+                <div><a class="btn btn-outline-success buy disabled" href="#" role="button">Buy for ₹ <span id="price"><%= games.price%></span></a></div>
+                <% } %> 
+            </div>
+            <hr>
+            <div class="about">
+                <h2>About the Game:</h2>
+                <p class="desc"><%= games.desc%> </p>
+            </div>
+            <hr>
+            <div>                
+                <h2>Overall Rating:</h2> <p style="font-size: 6em; margin-bottom: 0%; font-weight: 500;"><%= games.rating %>/10</p>
+                <p><em>"<%= games.critic.review%> " - <%= games.critic.name%> </em></p>
+            </div>
+            <hr>
+            <div class="dev-details row" style="margin-left: 5%;">
+                <div class="col-sm-12">
+                    <h3>Publisher: </h3> <p><%= games.dev%> </p>
+                </div>
+                <div class="col-sm-12">
+                    <h3>Developer: </h3> <p><%= games.publisher%></p>
+                </div>
+                <div class="col-sm-12">
+                    <h3>Release Date: </h3> <p><%= games.release%></p>
+                </div>
+            </div>
+            <hr>
+            <div class="req">
+                <h2 style="margin-bottom: 5%;">System Requirements</h2>
+                <ul class="list" style="margin-bottom: 2.5%;">
+                    <% const sys = games.sys_req.split('$') %>
+                    <% sys.forEach(spec => { %>
+                        <li><%= spec%></li>
+                    <% }) %>  
+                </ul>
+            </div>
+            <hr>
+            <div class="comments">
+                    <h2>Comments from Users (<%= count %>):</h2>
+                    <% if(count===0){ %>
+                        <br>
+                        <h4 style="margin-left:10%">Be the first one to leave a comment!</h4>
+                    <% } %> 
+                    <br>
+                    <% comments.forEach(comment => { %>
+                        <div class="comment-user">
+                            <h4><%= comment.user.username%> says:</h4>
+                            <p><%= comment.text%></p>
+                        </div>
+                    <% }); %> 
+                    <hr>
+                    <form action="/comments" method="POST" class="comment-form">
+                        <h3 style="margin-top:5%;">Leave a Comment:</h3>
+                        <div class="form-group">
+                            <textarea name="comment[text]" class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary float-right" style="margin-bottom: 2%;">Submit</button>
+                    </form>
+            </div>
+        </div>
+    </div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="/assets/js/checkout.js"></script>
+<%- include("partials/footer.ejs") %> 
